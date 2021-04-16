@@ -82,5 +82,9 @@ void keyPressed() {
   }
   println("interspace", interspace);
   
-  if(key == 's' || key == 'S') saveFrame("aula10_04_1.png");
+  if(key == 's' || key == 'S') saveFrame("data/aula10_04_01_" + dia_hora() +".png");
+}
+
+String dia_hora(){
+  return(year() + "-" + nf(month(), 2) + "-" +  nf(day(), 2) + "_" +  nf(hour(), 2) + "h" + nf(minute(), 2) + "m" + nf(second(),2) + "s");
 }
