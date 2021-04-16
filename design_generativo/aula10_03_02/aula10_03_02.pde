@@ -63,5 +63,9 @@ void mascara_fundo() {
 }
 
 void keyPressed(){
-  if(key == 's' || key == 'S') saveFrame("aula10_03_2.png");
+  if(key == 's' || key == 'S') saveFrame("aula10_03_02_" + data_atual() +".png");
+}
+
+String data_atual(){
+  return(year() + "-" + nf(month(), 2) + "-" +  nf(day(), 2) + "_" +  nf(hour(), 2) + "h" + nf(minute(), 2) + "m" + nf(second(),2) + "s");
 }
