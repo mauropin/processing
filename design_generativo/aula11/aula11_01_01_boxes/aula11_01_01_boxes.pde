@@ -74,10 +74,6 @@ class Tile {
   }
 
   void display() {
-    //float r = c >> 16 & 0xFF;
-    //float g = c >> 8 & 0xFF;
-    //float b = c & 0xFF;
-
     noStroke();
     fill(c);
     float distancia = dist(x, y, mouseX, mouseY);
