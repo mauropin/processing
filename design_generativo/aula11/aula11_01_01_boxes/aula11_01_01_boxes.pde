@@ -1,43 +1,40 @@
 Tile [] tiles;
 PImage picture;
 float tile_size;
-PShape seta;
 
-boolean distort = true;
-boolean salvando = false;
+boolean distort = true; // inicializo a variavel que vai controlar se a distorcao esta' ligada ou desligada
+boolean salvando = false; // inicializo a variavel que vai controlar se a funcao salvar esta' ligada ou desligada
 
-int modo = 1;
+int modo = 1; // inicializo a variavel que vai controloar o modo de distorcao
+
 
 void setup() {
   size(1024, 688, P3D);
-  //size(800, 600, P3D);
-  tile_size = 6;
+  tile_size = 6; // defino a largura do tile
   create_tiles();
   println("tile_size:", tile_size);
-  //seta = loadShape("../data/cursor02.svg");
-  //seta.disableStyle(); //desconsidera os atributos do objeto
   cursor(CROSS);
 }
+
 
 void draw() {
   background(50, 90, 150);
   directionalLight(250, 250, 250, 0, 0, -1);
   //ambientLight(90, 90, 90);
+  
   for (int i = 0; i < tiles.length; i++) {
     tiles[i].display();
-  }
-  pushMatrix();
-  translate(mouseX, mouseY, 100);//deslocando o eixo z acima dos boxes.
-  fill(30);
-  //shapeMode(CENTER);
-  //shape(seta, 0, 0);
-  popMatrix();
+  }  
   if (salvando) saveFrame("data/tiled_distortion_" + dia_hora() +".png");
 }
 
+
+
+/* CRIA OBJETOS Tile, PREENCHENDO O ARRAY tiles */
 void create_tiles() {
   background(50, 90, 150);
-  //altere o caminho da imagem para usar uma imagem do seu computador
+
+  /* carrega imagem - ALTERE O CAMINHO DA IMAGEM PARA USAR UM ARQUIVO DO SEU COMPUTADO */
   picture = loadImage("../data/great_wave_off_kanagawa.jpg");
   imageMode(CENTER);
   image(picture, width/2, height/2, width, height);
@@ -54,6 +51,7 @@ void create_tiles() {
   }
 }
 
+// apaga o array tiles() inteiro
 void delete_tiles() {
   while (tiles.length > 0) {
     tiles = (Tile[]) shorten(tiles);
@@ -61,10 +59,13 @@ void delete_tiles() {
 }
 
 
+/* A CLASSE TILE */
+
 class Tile {
   float x, y, d;
   color c;
 
+  //o construtor da classe
   Tile(float tx, float ty, float td, color tc) {
     x = tx;
     y = ty;
@@ -104,27 +105,31 @@ class Tile {
 
 
 void keyPressed() {
+  //aumenta o tamanho do tile
   if (keyCode == UP && tile_size < 50) {
     delete_tiles();
     tile_size+=2;
     create_tiles();
   }
+  //reduz o tamanho do tile
   if (keyCode == DOWN && tile_size > 2) {
     delete_tiles();
     tile_size-=2;
     create_tiles();
   }
 
-  if (key == ' ') distort = !distort;
+  if (key == ' ') distort = !distort; //liga / desliga a funcao de distorcao
 
-  if (key == '1') modo = 1;
-  if (key == '2') modo = 2;
+  if (key == '1') modo = 1; // altera o modo de distorcao
+  if (key == '2') modo = 2; // altera o modo de distorcao
 
   println("tile_size", tile_size);
 
-  if (key == 's' || key == 'S') salvando = !salvando;
+  if (key == 's' || key == 'S') salvando = !salvando;  // liga/desliga a funcao de salvar frames
 }
 
+
+/* Retorna um String com a data, no formato AAA-MM-DD_HHhMMmSSs (ex: 2021-04-23_10h20m10s) */
 String dia_hora() {
   return(year() + "-" + nf(month(), 2) + "-" +  nf(day(), 2) + "_" +  nf(hour(), 2) + "h" + nf(minute(), 2) + "m" + nf(second(), 2) + "s");
 }
