@@ -1,0 +1,75 @@
+/*
+ENUNCIADO
+
+Em uma janela de 800x800px, crie um conjunto de objetos ordenados em um grid regular, 
+com o mesmo número de subdivisões no sentido horizontal e vertical da tela.
+
+Cada objeto será uma instância de uma mesma classe, mas sua configuração final vai 
+variar de acordo com a interação do usuário – movimento do mouse, teclado, clique...
+
+Procure explorar o aspecto visual, criando uma composição esteticamente agradável! 
+Relembre o começo do curso e experimente usar as primitivas geométricas para criar 
+formas interessantes.
+
+*/
+
+var side = 100;
+var mode = true;
+
+modules = []; 
+
+
+function setup(){
+  createCanvas(800, 800);
+  
+  var numX = ceil(width/side) + 1;
+  var numY = ceil(height/side) + 1;
+    
+  for (var x = 0; x < numX; x++){
+		modules[x] = []; //cada posicao x tera um array para guardar os valores y
+
+		for (var y = 0; y < numY; y++){
+      var modX = (x * side) + (side/2);
+      var modY = (y * side) + (side/2);
+      
+      modules[x][y] = new Module(modX, modY);
+    }
+  }
+}
+
+function draw(){
+  background(255);
+  
+  for (var i = 0; i < modules.length; i++){
+    for (var j = 0; j < modules[0].length; j++){    
+      modules[i][j].printModule();
+    }
+  }
+}
+
+function mousePressed(){
+  mode = !mode;
+}
+
+  //Constructor.
+  function Module(posX, posY){
+    this.posX = posX;
+    this.posY = posY;
+
+  
+  //Functions.
+  this.printModule = function(){
+    var size;
+    
+    if(mode){
+      size = dist(mouseX, mouseY, this.posX, this.posY);
+    } else {
+      size = width/constrain(dist(mouseX, mouseY, this.posX, this.posY), 0.1, width);
+    }
+    
+    fill(0);
+    stroke(255);
+    strokeWeight(2);
+    circle(posX, posY, size);
+  }
+}
