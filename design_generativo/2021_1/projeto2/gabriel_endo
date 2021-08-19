@@ -53,13 +53,13 @@ function mousePressed(){
   mode = !mode;
 }
 
-  //Constructor.
+  //Class
   function Module(posX, posY){
     this.posX = posX;
     this.posY = posY;
 
   
-  //Functions.
+  //Functions
   this.printModule = function(){
     var size;
     
