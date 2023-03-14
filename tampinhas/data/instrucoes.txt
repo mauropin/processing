@@ -1,0 +1,46 @@
+//////////////////////////////////////////////////////////////////
+PROGRAMA PARA CRIAR DESENHOS FEITOS COM TAMPINHAS DE GARRAFA PET
+por Mauro Pinheiro
+//////////////////////////////////////////////////////////////////
+
+O programa foi pensado para gerar PDFs no tamanho A4 em orientação retrato, mais fáceis de imprimir, mas permite criar desenhos de qualquer tamanho. Para alterar o tamanho do desenho, basta alterar no código o número de tampinhas que serão usadas no sentido horizontal e vertical do desenho.
+
+Na janela de visualização, linhas indicam as divisões entre as páginas. É possível "arrastar" o desenho dentro da janela de visualização, basta manter a BARRA DE ESPAÇO pressionada, clicar e arrastar o cursor pela tela.
+
+Para mudas as cores das tampinhas, use as teclas de 1 a 9
+1 = vermelho · 2 = laranja · 3 = amarelo · 4 = verde · 5 = acqua · 6 = azul · 7 = roxo · 8 = preto · 9 = branco
+
+Para PINTAR uma tampinha com a cor escolhida, clique o botão do mouse.
+
+Para pintar TODAS as tampinhas com a cor escolhida, aperte a tecla A
+
+Para APAGAR tampinhas, aperte a tecla DELETE e depois clique sobre a tampinha que quer apagar.
+
+Para APAGAR TODAS as tampinhas, aperte as teclas FN + DELETE (no Mac) ou BACKSPACE
+
+Para ALTERAR O ZOOM na tela de edição, use as setas para cima para baixo.
+
+Para alterar entre o MODO EDIÇÃO e VISUALIZAÇÃO, aperte a tecla Z.
+
+Para altera o TAMANHO DO PINCEL, use o botão de rolagem do mouse.
+
+Para exibir/esconder a janela de PREVIEW, aperte a tecla V.
+
+Para exibir/esconder as INSTRUÇÕES, aperte a tecla H.
+
+Para SALVAR o desenho, aperte a tecla S.
+
+Para começar um desenho NOVO, aperte a tecla N.
+
+Para gerar as páginas em PDF, com as tampinhas coloridas, aperte a tecla P.
+
+Para gerar as páginas em PDF apenas com os NOMES das cores, aperte a tecla O.
+
+Para gerar um PDF único com o desenho inteiro, aperte a tecla T.
+
+Para salvar apenas a tabela de dados do desenho, aperte a tecla E.
+
+Para CARREGAR a tabela do último desenho salvo, aperte a tecla L.
+
+Para SAIR do programa, aperte as teclas SHIFT + Q. O desenho atual será salvo.
+
