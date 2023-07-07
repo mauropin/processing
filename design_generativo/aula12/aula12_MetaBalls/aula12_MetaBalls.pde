@@ -4,38 +4,67 @@
  * apresentado em https://youtu.be/ccYLb7cLB1I
 */
 
-Ball[] myBalls = new Ball[10];
+Ball [] myBalls;
 
 void setup() {
   size(600, 600);
   colorMode(HSB);
+
+  myBalls = new Ball[10];
+
   for (int i = 0; i < myBalls.length; i++) {
-    float radius = random(80, 250);
-    float x = random(0.1, width-0.1);
-    float y = random(0.1, height-0.1);
-    myBalls[i] = new Ball(x, y, radius);
+    float x = random(width);
+    float y = random(height);
+    myBalls[i] = new Ball(x, y);
   }
 }
 
 void draw() {
-  //background(51);
+  background(0);
   loadPixels();
-  for (int x = 0; x < width; x++) {
-    for (int y = 0; y < height; y++) {
-      int index = x + y * width;
-      float sum = 0;
-      for (Ball eachBall : myBalls) {
-        float distance = dist(x, y, eachBall.pos.x, eachBall.pos.y);
-        sum +=  22.5 * eachBall.radius / distance;
+  for (int y = 0; y < height; y++) {
+    for (int x = 0; x < width; x++) {
+      int index = y * width + x;
+      float soma = 0;
+      for (Ball b : myBalls) {
+        float d = dist(b.x, b.y, x, y); //calcula a distancia da bola ao pixel
+        soma += b.r * 12.5 / d; //soma o valor da distancia, acumulando o total para todas as bolas
       }
-      pixels[index] = color(sum, 255, 255);
+      pixels[index] = color(soma, 255, 255);//altera a cor do pixel de acordo com o total de distancias
     }
   }
-
   updatePixels();
+  for (Ball b : myBalls) {
+    //b.desenha();
+    b.move();
+  }
+}
 
-  for (Ball eachBall : myBalls) {
-   eachBall.update();
-   //eachBall.show();
+
+
+class Ball {
+  float x, y, inc_x, inc_y, r;
+
+  Ball(float x, float y) {
+    this.x = x;
+    this.y = y;
+    inc_x = random(-5, 5);
+    inc_y = random(-5, 5);
+    r = 120;
+  }
+
+
+  void desenha() {
+    noFill();
+    stroke(255);
+    circle(x, y, r);
+  }
+
+  void move() {
+    x += inc_x;
+    y += inc_y;
+
+    if (x > width || x < 0) inc_x *= -1;
+    if (y > height || y < 0) inc_y *= -1;
   }
 }
